@@ -1,0 +1,96 @@
+import torch
+import torch.nn as nn
+import torch.optim as optim
+from torch.utils.data import DataLoader, Dataset
+from sklearn.feature_extraction.text import CountVectorizer
+print("Import Successful")
+import numpy as np
+import time
+import random
+
+#Below is where I laid the platform for the AI to classify messages that may be sensitive#
+class EmailDataset(Dataset):
+    def __init__(self,emails, labels):
+        self.emails = emails
+        self.labels = labels
+
+    def __len__(self):
+        return len(self.emails)
+
+    def __getitem__(self, idx):
+        email = self.emails[idx]
+        label = self.labels[idx]
+        return email, label
+
+class EmailClassifier(nn.Module):
+    def __init__(self, input_size):
+        super(EmailClassifier, self).__init__()
+        self.fc = nn.Linear(input_size, 1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        x = self.fc(x)
+        x = self.sigmoid(x)
+        return x
+def preprocess_emails(emails):
+    vectorizer = CountVectorizer()
+    email_vectors = vectorizer.fit_transform(emails).toarray()
+    return email_vectors, vectorizer
+def train_model(emails, labels):
+    email_vectors, vectorizer = preprocess_emails(emails)
+    dataset = EmailDataset(email_vectors, labels)
+    dataloader = DataLoader(dataset, batch_size=4, shuffle=True)
+
+    model = EmailClassifier(input_size=email_vectors.shape[1])
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+    for epoch in range(10):
+        for email_vector, label in dataloader:
+            email_vector = email_vector.float()
+            label = label.long()
+            optimizer.zero_grad()
+            outputs = model(email_vector)
+            loss = criterion(outputs, label)
+            loss.backward()
+            optimizer.step()
+    return model, vectorizer
+
+def classify_email(model, vectorizer, email):
+    email_vector = vectorizer.transform([email]).toarray()
+    email_tensor = torch.tensor(email_vector).float()
+    output = model(email_tensor)
+    _, predicted = torch.max(output, 1)
+    return "Sensitive" if predicted.item() == 1 else "Safe"
+
+
+emails = ["This is a test email with sensitive information.", "This is a safe email.", "Please share your password."]
+labels = [0, 1]
+
+model, vectorizer = train_model(emails, labels)
+email_content = "Please share your bank account details."
+decision = classify_email(model, vectorizer, email_content)
+print(f"Email classified as: {decision}")
+
+
+    
+if torch.cuda.is_available():
+    device = torch.device("cua")
+
+else:
+    device = torch.device("cpu")
+
+word_library = {"Confidiential", "password", "Routing Number", "SSN", "Credit Card", "Bank Account", "PIN"}
+
+def contains_sensitive_words(email_content, word_library):
+    email_words = email_content.lower().split()
+    for word in word_library:
+        if word in email_words:
+            return True
+    return False
+def process_email(email_content):
+    if contains_sensitive_words(email_content, word_library):
+        print("Sensitive information detected!")
+        
+    else:
+        print("No sensitive information detected.")
