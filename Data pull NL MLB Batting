@@ -1,0 +1,236 @@
+import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
+
+import matplotlib.pyplot as plt
+
+# Hitting data from the last 15 years
+url = "https://www.baseball-reference.com/leagues/NL/2010-standard-batting.shtml"
+url2 = "https://www.baseball-reference.com/leagues/NL/2011-standard-batting.shtml"
+url3 = "https://www.baseball-reference.com/leagues/NL/2012-standard-batting.shtml"
+url4 = "https://www.baseball-reference.com/leagues/NL/2013-standard-batting.shtml"
+url5 = "https://www.baseball-reference.com/leagues/NL/2014-standard-batting.shtml"
+url6 = "https://www.baseball-reference.com/leagues/NL/2015-standard-batting.shtml"
+url7 = "https://www.baseball-reference.com/leagues/NL/2016-standard-batting.shtml"
+url8 = "https://www.baseball-reference.com/leagues/NL/2017-standard-batting.shtml"
+url9 = "https://www.baseball-reference.com/leagues/NL/2018-standard-batting.shtml"
+url10 = "https://www.baseball-reference.com/leagues/NL/2019-standard-batting.shtml"
+url11 = "https://www.baseball-reference.com/leagues/NL/2020-standard-batting.shtml"
+url12 = "https://www.baseball-reference.com/leagues/NL/2021-standard-batting.shtml"
+url13 = "https://www.baseball-reference.com/leagues/NL/2022-standard-batting.shtml"
+url14 = "https://www.baseball-reference.com/leagues/NL/2023-standard-batting.shtml"
+url15 = "https://www.baseball-reference.com/leagues/NL/2024-standard-batting.shtml"
+# Reading the tables from each URL
+
+tables = pd.read_html(url)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url2)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url4)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url5)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url6)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url7)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url8)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url9)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url10)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url11)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url12)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url13)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url14)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+tables = pd.read_html(url15)
+
+df = tables[0]
+
+print(df.head(15))
+df["Tm"] = df["Tm"].astype(str).str.strip()
+invalids = ["", "Tm", "nan", "NaN", "None"]
+df = df[~df["Tm"].isin(invalids)]
+df = df.dropna(subset=["Tm"])
+df = df.reset_index(drop=True)
+# Reset index
+df = df.reset_index(drop=True)
+
+df.head()
+
+df.to_csv('./data/myfile.csv', index=False)
+print("Data saved to NL_MLB_Batting_2010_2024.csv")
